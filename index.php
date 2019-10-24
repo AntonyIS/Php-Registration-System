@@ -7,12 +7,14 @@ include 'config.php';
 <div class="container">
     <h1 style="text-align: center">Users</h1>
     <?php
+//    to get all the user from the db we need to creat a sql query as below and ad a databse command that fetches all the data
     $sql = "SELECT * FROM `users`";
 
     //store the data in a variable called results
     $results = mysqli_query($conn, $sql);
 
     echo "<div class='row'>";
+//    Loop through the records received from the database
     while($row = mysqli_fetch_array($results)){
 //            grab individual row data
 
@@ -25,24 +27,24 @@ include 'config.php';
 
 //            presenting the data in HTML n boostrap
         echo "<div class='col-xs-4 col-sm-4 col-md-6 col-lg-4' id='item' >";
-        echo "<div class='img-thumbnail shadow-lg p-1 mb-5 bg-white' id='item_css'>";
-        echo "<a href='detail.php?id=$id' style='text-decoration: none'>";
-        ?>
-        <p class="lead"  id="effecD" style="display: none">
-            <?php echo  $firstname;echo  $lastname?>
-        </p>
-        <?php
-        echo "<img src='$image' alt='' class='card-img' style='height: 218px;' id='$id'>";
-        ?>
+            echo "<div class='img-thumbnail shadow-lg p-1 mb-5 bg-white' id='item_css'>";
+            echo "<a href='detail.php?id=$id' style='text-decoration: none'>";
+            ?>
+            <p class="lead"  id="effecD" style="display: none">
+                <?php echo  $firstname;echo  $lastname?>
+            </p>
+            <?php
+            echo "<img src='$image' alt='' class='card-img' style='height: 218px;' id='$id'>";
+            ?>
 
-        <?php
-        echo "<div class='caption'>";
-        echo "<p class='lead ' style='text-align: center;margin-top: 8px;color:orange;font-weight: bold'>$firstname</p>";
-        echo "<hr>";
+            <?php
+            echo "<div class='caption'>";
+            echo "<p class='lead ' style='text-align: center;margin-top: 8px;color:orange;font-weight: bold'>$firstname</p>";
+            echo "<hr>";
 
-        echo "</div>";
-        echo "</a>";
-        echo "</div>";
+            echo "</div>";
+            echo "</a>";
+            echo "</div>";
         echo "</div>";
     }
     echo "</div>";

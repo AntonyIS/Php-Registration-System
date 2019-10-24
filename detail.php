@@ -1,4 +1,5 @@
 <?php
+
 ///fetch tour from the database
 include "config.php";
 

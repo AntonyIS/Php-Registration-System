@@ -103,6 +103,14 @@ if(isset($_POST['signupBtn'])){
                     <label for="password">Confirm Password</label>
                     <input type="password" name="password2" class="form-control" placeholder="Confirm password">
                 </div>
+<!--                Added more fields to the database: image,website,linkedin-->
+<!--                These input elements are set to hidden and contain a default value that will be saved to the database-->
+<!--                These fields need not to be field as the user is registering, rather the user will update the in there profile page-->
+<!--                Therefore they contain default values that will be stored in the db 'users' table-->
+<!--                Below are the input fields-->
+<!--                image => value = "image"-->
+<!--                website => value = "website"-->
+<!--                linkedin => value = "linkedin"-->
                 <div class="form-group">
                     <input type="text" name="image" value="image" hidden>
                 </div>

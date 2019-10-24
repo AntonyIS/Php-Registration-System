@@ -22,18 +22,22 @@ if(isset($_POST['loginBtn'])){
     $password = md5($password);
 
 
-//    check if the user exists in the database: if true ask them to login instead
+//    check if the user exists in the database: if true they exist in the system and there they can be allowed into the site hence ask them to login instead
     $sql = "SELECT `id`, `email`, `password` FROM `users` WHERE email = '$email' AND password = '$password'";
 //    $sql = "SELECT `email`, `password` FROM `users` WHERE email = '$email' AND password = '$password'";
     $results = mysqli_query($conn,$sql);
 
 
     if(mysqli_num_rows($results) > 0){
-
+//    if number of rows are >0 , that means that a record was found in the db
+//        give the user a session so that they can be able to access private pages like private page using this session
         $_SESSION['loggedin'] = true;
 
         while($row = mysqli_fetch_assoc($results)) {
+//            To give the user special access to other pages using the id, we use the while loop to through the records and grab the id
+//            This id will be handy whenever we want to access reocrds of the user from any page, we just reference the id and we can select the from the db using this ID
             $_SESSION['id'] = $row['id'];
+//            after grabbing the id we redirect the user to the index page
             header("location:index.php");
             exit();
         }
