@@ -9,9 +9,9 @@ if (!isset($_SESSION['loggedin'])) {
     header('location:login.php');
 }
 
-if(isset($_GET['id'])){
-    $id = $_GET['id'];
-    $sql = "SELECT `id`, `firstname`, `lastname`, `email`, `password`, `image`, `website`, `linkedin` FROM `users` WHERE id=2";
+if(isset($_SESSION['id'])){
+    $id = $_SESSION['id'];
+    $sql = "SELECT `id`, `firstname`, `lastname`, `email`, `password`, `image`, `website`, `linkedin` FROM `users` WHERE id='$id'";
     $result = mysqli_query($conn, $sql) or die($id);
 
     $row = mysqli_fetch_assoc($result);
@@ -20,6 +20,7 @@ if(isset($_GET['id'])){
     $lastname = $row['lastname'];
     $email = $row['email'];
     $image = $row['image'];
+
     $website = $row['website'];
     $linkedin = $row['linkedin'];
 
@@ -31,10 +32,12 @@ if(isset($_GET['id'])){
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <div class="thumbnail" style="margin-top: 20px">
-                    <img src="images/prof.png" alt="" style="width: 350px;height: 350px">
-                    <p class="lead">Name:<?php echo $firstname?></p>
-                    <p class="lead">Email<?php echo $lastname?></p>
+                <div class="thumbnail " style="margin-top: 20px">
+                    <img src="<?php echo $image?>" alt="" style="width: 350px;height: 350px" class="img-thumbnail shadow-lg p-1 mb-5 bg-white">
+                    <div class="caption">
+                        <p class="lead "><?php echo $firstname."  ".$lastname?></p>
+
+                    </div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -61,7 +64,8 @@ if(isset($_GET['id'])){
                         <input type="text" name="linkedin" class="form-control" value="<?php echo $linkedin?>">
                     </div>
                     <div class="form-group">
-                        <input type="file" name="fileToUpload" value="<?php echo $image?>">
+                        <input type="file" name="fileToUpload">
+                        <input type="text" hidden name="oldimg" value="<?php echo $image?>" >
                     </div>
 
                     <input type="submit" name="updateBtn" value="Update account" class="btn btn-success btn-lg">
