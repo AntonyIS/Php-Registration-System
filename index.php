@@ -15,6 +15,8 @@ include 'config.php';
     echo "<div class='row'>";
     while($row = mysqli_fetch_array($results)){
 //            grab individual row data
+
+        $id = $row['id'];
         $firstname = $row['firstname'];
         $lastname = $row['lastname'];
         $image = $row['image'];
@@ -24,7 +26,7 @@ include 'config.php';
 //            presenting the data in HTML n boostrap
         echo "<div class='col-xs-4 col-sm-4 col-md-6 col-lg-4' id='item' >";
         echo "<div class='img-thumbnail shadow-lg p-1 mb-5 bg-white' id='item_css'>";
-        echo "<a href='details.php?id=$id' style='text-decoration: none'>";
+        echo "<a href='detail.php?id=$id' style='text-decoration: none'>";
         ?>
         <p class="lead"  id="effecD" style="display: none">
             <?php echo  $firstname;echo  $lastname?>
